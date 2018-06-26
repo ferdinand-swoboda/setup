@@ -1,0 +1,46 @@
+[user]
+	email = ferdinand.swoboda@googlemail.com
+	name = Ferdinand Swoboda
+	signingkey = AAC21F752169DD48
+[pull]
+	rebase = preserve
+[push]
+	default = simple
+	followTags = true
+[color]
+	# Enable colors in color-supporting terminals
+	ui = auto
+[alias]
+	prune = fetch --prune
+	glog = log --graph --decorate --all --color
+	undo = reset --soft HEAD^
+	stash-all = stash save --include-untracked
+	amend = commit --amend
+	review-local = "!git lg @{push}.."
+[core]
+	# Don't consider trailing space change as a cause for merge conflicts
+	whitespace = -trailing-space
+	editor = vim
+[status]
+	# Display submodule rev change summaries in status
+	submoduleSummary = true
+	# Recursively traverse untracked directories to display all contents
+	showUntrackedFiles = all
+[tag]
+	# Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
+	sort = version:refname
+[log]
+	decorate = full
+[rebase]
+	autostash = true
+[merge]
+	ff = only
+	conflictstyle = diff3
+[stash]
+	showPatch = true
+[transfer]
+	fsckobjects = false
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
