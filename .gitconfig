@@ -11,16 +11,12 @@
 	# Enable colors in color-supporting terminals
 	ui = auto
 [alias]
-	prune = fetch --prune
 	glog = log --graph --decorate --all --color
-	undo = reset --soft HEAD^
-	stash-all = stash save --include-untracked
-	amend = commit --amend
-	review-local = "!git lg @{push}.."
 [core]
 	# Don't consider trailing space change as a cause for merge conflicts
 	whitespace = -trailing-space
 	editor = vim
+	autocrlf = input
 [status]
 	# Display submodule rev change summaries in status
 	submoduleSummary = true
@@ -44,3 +40,5 @@
 	program = gpg
 [commit]
 	gpgsign = true
+[fetch]
+	prune = true
