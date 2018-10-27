@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #title          :install.sh
-#description    :This script will install and configure Fish Shell + Fisherman.
-#author         :ghaiklor
-#date           :2017-12-10
+#description    :This script will set up my machine.
+#author         :ferdinand-swoboda
+#date           :2018-06-30
 #version        :0.1
 #usage          :bash <(curl -s https://raw.githubusercontent.com/ghaiklor/iterm-fish-fisherman-osx/master/install.sh)
 #bash_version   :3.2.57(1)-release
