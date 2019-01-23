@@ -1,13 +1,17 @@
 # setup
 Personal machine setup including
 - Homebrew and applications
-- Git config
-- fish shell & fish plugins
+- Configs
+  - git
+  - SSH
+  - unison
+- fish shell customization
 
 Does not include
 - SSH keys
 - GPG keys
-- Firefox bookmarks
+- Keepass Vault
+- Cryptomator Vault
 
 Simply run
 >$ bash <(curl -s https://raw.githubusercontent.com/ferdinand-swoboda/setup/master/install.sh)

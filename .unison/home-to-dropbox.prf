@@ -1,0 +1,13 @@
+# Roots of the synchronization
+root = /Users/barbarossa/
+root = /Users/barbarossa/Dropbox/home/
+
+# Paths to synchronize 
+path = Documents/Private
+path = Documents/Access.kdbx
+
+# options
+rsrc = false
+ignore = Name .FBCIndex
+ignore = Name .FBCLockFolder
+ignore = Name {Cache*,.Trash*,.VolumeIcon.icns,.HSicon,Temporary*,.Temporary*,TheFindByContentFolder,TheVolumeSettingsFolder,.Metadata,.filler,.idsff,.Spotlight,.DS_Store,.CFUserTextEncoding}

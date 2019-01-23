@@ -2,9 +2,9 @@
 #title          :install.sh
 #description    :This script will set up my machine.
 #author         :ferdinand-swoboda
-#date           :2018-06-30
-#version        :0.1
-#usage          :bash <(curl -s https://raw.githubusercontent.com/ghaiklor/iterm-fish-fisherman-osx/master/install.sh)
+#date           :2019-01-23
+#version        :0.2
+#usage          :bash <(curl -s https://raw.githubusercontent.com/ferdinand-swoboda/setup/master/install.sh)
 #bash_version   :3.2.57(1)-release
 #===================================================================================
 
@@ -44,22 +44,10 @@ function separator() {
 }
 
 function hello() {
-    green_color
-    echo "                                              "
-    echo "    _____      __            __         ____  "
-    echo "   / __(_)____/ /_     _____/ /_  ___  / / /  "
-    echo "  / /_/ / ___/ __ \   / ___/ __ \/ _ \/ / /   "
-    echo " / __/ (__  ) / / /  (__  ) / / /  __/ / /    "
-    echo "/_/ /_/____/_/ /_/  /____/_/ /_/\___/_/_/     "
-    echo "                                              "
-    echo "           iTerm + Fish + Fisherman           "
-    echo "                 by @ghaiklor                 "
-    echo "                                              "
-    echo "                                              "
-
     blue_color
-    echo "This script will guide you through installing all the required dependencies for Fish Shell + Fisherman + Themes and Plugins"
-    echo "It will not install anything, without your direct agreement (do not afraid)"
+    echo "This script will guide you through installing all the required dependencies for my basic machine setup including customized Fish shell, app configs and Homebrew apps."
+    echo "However, it will not download SSH or GPG keys or my data vaults."
+    echo "Furthermore, it will not install anything, without direct agreement."
 
     green_color
     read -p "Do you want to proceed with installation? (y/N) " -n 1 answer
@@ -110,7 +98,7 @@ function install_homebrew() {
     if ! [ $(which brew) ]; then
         blue_color
         echo "Seems like you don't have Homebrew installed"
-        echo "We need it for completing the installation of your awesome terminal environment"
+        echo "We need it for completing the installation"
 
         green_color
         read -p "Do you agree to proceed with Homebrew installation? (y/N) " -n 1 answer
@@ -138,37 +126,158 @@ function install_homebrew() {
     sleep 1
 }
 
-function install_iTerm2() {
+function install_git() {
+  blue_color
+  echo "Trying to detect Git..."
+
+  if ! [ $(which git) ]; then
+      blue_color
+      echo "Seems like you don't have Git installed"
+
+      green_color
+      read -p "Do you agree to proceed with Git installation? (y/N) " -n 1 answer
+      echo
+      if [ ${answer} != "y" ]; then
+          exit 1
+      fi
+
+      blue_color
+      echo "Installing Git..."
+
+      brew install git
+
+      green_color
+      echo "Git installed!"
+  else
+      blue_color
+      echo "You already have Git installed, so skipping..."
+  fi
+
+  reset_color
+  separator
+  sleep 1
+}
+
+function clone_setup_project() {
+  blue_color
+  echo "Cloning setup project?"
+  echo "We need it to complete the installation of apps"
+
+  green_color
+  read -p "Do you agree to download the setup files? (y/N) " -n 1 answer
+  echo
+  if [ ${answer} != "y" ]; then
+      exit 1
+  fi
+
+  blue_color
+  echo "Cloning setup project into projects directory..."
+
+  mkdir ~/projects
+  git clone git@github.com:ferdinand-swoboda/setup.git ~/projects/setup
+
+  green_color
+  echo "Project cloned!"
+
+  reset_color
+  separator
+  sleep 1
+}
+
+function link_config_files() {
+  blue_color
+  echo "Linking config files?"
+
+  green_color
+  read -p "Do you want to link the config files? (y/N) " -n 1 answer
+  echo
+  if [ ${answer} != "y" ]; then
+      blue_color
+      echo "Skipping config file linking..."
+  else
+    ln -s -f ../projects/setup/.gitconfig ~/.gitconfig
+    ln -s -f ../projects/setup/.ssh/config ~/.ssh/config
+    ln -s -f ../projects/setup/.unison/default.prf ~/.unison/default.prf
+    ln -s -f ../projects/setup/.unison/home-to-onedrive.prf ~/.unison/home-to-onedrive.prf
+    ln -s -f ../projects/setup/.unison/home-to-google.prf ~/.unison/home-to-google.prf
+    ln -s -f ../projects/setup/.unison/home-to-dropbox.prf ~/.unison/home-to-dropbox.prf
+
+    green_color
+    echo "Config files (symbolically) linked!"
+  fi
+
+  reset_color
+  separator
+  sleep 1
+}
+
+function install_apps() {
     blue_color
-    echo "Trying to find installed iTerm..."
+    echo "Installing/upgrading apps from Brewfile"
 
-    if ! [ $(ls /Applications/ | grep iTerm.app) ]; then
-        blue_color
-        echo "I can't find installed iTerm"
-
-        green_color
-        read -p "Do you agree to install it? (y/N) " -n 1 answer
-        echo
-        if [ ${answer} != "y" ]; then
-            exit 1
-        fi
-
-        blue_color
-        echo "Installing iTerm2..."
-
-        brew cask install iterm2
-
-        green_color
-        echo "iTerm2 installed!"
-    else
-        blue_color
-        echo "Found installed iTerm.app, so skipping..."
+    green_color
+    read -p "Do you agree to install all apps in the Brewfile? (y/N) " -n 1 answer
+    echo
+    if [ ${answer} != "y" ]; then
+        exit 1
     fi
+
+    brew bundle install --file=~/projects/setup/Brewfile
+
+    green_color
+    echo "Apps installed!"
 
     reset_color
     separator
     sleep 1
 }
+
+function set_preferences() {
+  blue_color
+  echo "Setting some macOS system preferences..."
+
+  # make Library directory visible
+  chflags nohidden ~/Library
+  # show hidden files
+  defaults write com.apple.finder AppleShowAllFiles YES
+  # System Preferences > General > Click in the scrollbar to: Jump to the spot that's clicked
+  defaults write -globalDomain "AppleScrollerPagingBehavior" -bool true
+  # System Preferences > Dock > Size:
+  defaults write com.apple.dock tilesize -int 36
+  # System Preferences > Dock > Magnification:
+  defaults write com.apple.dock magnification -bool true
+  # System Preferences > Dock > Minimize windows into application icon
+  defaults write com.apple.dock minimize-to-application -bool true
+  # System Preferences > Dock > Automatically hide and show the Dock:
+  defaults write com.apple.dock autohide -bool true
+  # System Preferences > Dock > Show indicators for open applications
+  defaults write com.apple.dock show-process-indicators -bool true
+  # System Preferences > Mission Controll > Automatically rearrange Spaces based on most recent use
+  defaults write com.apple.dock mru-spaces -bool false
+  # Finder > Preferences > Show all filename extensions
+  defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+  # Finder > Preferences > Show wraning before removing from iCloud Drive
+  defaults write com.apple.finder FXEnableRemoveFromICloudDriveWarning -bool false
+  # Finder > View > As List
+  defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+  # Finder > View > Show Path Bar
+  defaults write com.apple.finder ShowPathbar -bool true
+  defaults write com.apple.finder ShowStatusBar -bool true
+
+  echo "Killing affected apps..."
+  for app in "Dock" "Finder"; do
+    killall "${app}" > /dev/null 2>&1
+  done
+
+  green_color
+  echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+  reset_color
+  separator
+  sleep 1
+}
+
+#=============== START - Shell specific stuff ==================#
 
 function install_color_scheme() {
     green_color
@@ -334,6 +443,9 @@ function post_install() {
     exit 0
 }
 
+
+#=============== END - Shell specific stuff ==================#
+
 function on_sigterm() {
     red_color
     echo
@@ -348,7 +460,11 @@ function on_sigterm() {
 hello
 install_command_line_tools
 install_homebrew
-install_iTerm2
+install_git
+clone_setup_project
+link_config_files
+install_apps
+set_preferences
 install_color_scheme
 install_nerd_font
 install_fish

@@ -1,0 +1,12 @@
+# Roots of the synchronization
+root = /Users/barbarossa/
+root = /Volumes/Backup/home/
+
+# Paths to synchronize 
+path = Documents/Private
+path = Documents/Access.kdbx
+path = Documents/books
+
+# options
+
+fat=true
