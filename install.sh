@@ -173,7 +173,7 @@ function clone_setup_project() {
   blue_color
   echo "Cloning setup project into projects directory..."
 
-  mkdir ~/projects
+  mkdir -p ~/projects
   git clone git@github.com:ferdinand-swoboda/setup.git ~/projects/setup
 
   green_color
@@ -368,7 +368,6 @@ function install_fish() {
     fi
 
     echo "$(command -v fish)" | sudo tee -a /etc/shells
-    chsh -s "$(command -v fish)"
 
     green_color
     echo "Fish installed!"
