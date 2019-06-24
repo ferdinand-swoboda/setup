@@ -10,6 +10,7 @@ Personal machine setup including
 Does not include
 - SSH keys
 - GPG keys
+- non-Brew software (GPG suite)
 - Keepass Vault
 - Cryptomator Vault
 

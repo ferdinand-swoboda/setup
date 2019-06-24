@@ -46,7 +46,7 @@ function separator() {
 function hello() {
     blue_color
     echo "This script will guide you through installing all the required dependencies for my basic machine setup including customized Fish shell, app configs and Homebrew apps."
-    echo "However, it will not download SSH or GPG keys or my data vaults."
+    echo "However, it will not download SSH/GPG keys/GPG suite (!) or my data vaults."
     echo "Furthermore, it will not install anything, without direct agreement."
 
     green_color
