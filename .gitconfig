@@ -3,7 +3,7 @@
 	name = Ferdinand Swoboda
 	signingkey = AAC21F752169DD48
 [pull]
-	rebase = preserve
+	rebase = true
 [push]
 	default = simple
 	followTags = true
@@ -28,7 +28,7 @@
 [log]
 	decorate = full
 [rebase]
-	autostash = true
+	autoSquash = true
 [merge]
 	ff = only
 	conflictstyle = diff3
@@ -42,3 +42,8 @@
 	gpgsign = true
 [fetch]
 	prune = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

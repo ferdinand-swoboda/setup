@@ -46,7 +46,7 @@ function separator() {
 function hello() {
     blue_color
     echo "This script will guide you through installing all the required dependencies for my basic machine setup including customized Fish shell, app configs and Homebrew apps."
-    echo "However, it will not download SSH/GPG keys/GPG suite (!) or my data vaults."
+    echo "However, it will not download SSH/GPG keys or my data vaults."
     echo "Furthermore, it will not install anything, without direct agreement."
 
     green_color
@@ -449,8 +449,6 @@ function on_sigterm() {
     red_color
     echo
     echo -e "Wow... Something serious happened!"
-    echo -e "Though, I don't know what really happened :("
-    echo -e "Check ghaiklor's repo"
 
     reset_color
     exit 1
