@@ -195,12 +195,12 @@ function link_config_files() {
       blue_color
       echo "Skipping config file linking..."
   else
-    ln -s -f ../projects/setup/.gitconfig ~/.gitconfig
-    ln -s -f ../projects/setup/.ssh/config ~/.ssh/config
-    ln -s -f ../projects/setup/.unison/default.prf ~/.unison/default.prf
-    ln -s -f ../projects/setup/.unison/home-to-onedrive.prf ~/.unison/home-to-onedrive.prf
-    ln -s -f ../projects/setup/.unison/home-to-google.prf ~/.unison/home-to-google.prf
-    ln -s -f ../projects/setup/.unison/home-to-dropbox.prf ~/.unison/home-to-dropbox.prf
+    ln -s -f ~/projects/setup/.gitconfig ~/.gitconfig
+    ln -s -f ~/projects/setup/.ssh/config ~/.ssh/config
+    ln -s -f ~/projects/setup/.unison/default.prf ~/.unison/default.prf
+    ln -s -f ~/projects/setup/.unison/home-to-onedrive.prf ~/.unison/home-to-onedrive.prf
+    ln -s -f ~/projects/setup/.unison/home-to-google.prf ~/.unison/home-to-google.prf
+    ln -s -f ~/projects/setup/.unison/home-to-dropbox.prf ~/.unison/home-to-dropbox.prf
 
     green_color
     echo "Config files (symbolically) linked!"
