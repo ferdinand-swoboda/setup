@@ -197,6 +197,7 @@ function link_config_files() {
   else
     ln -s -f ~/projects/setup/.gitconfig ~/.gitconfig
     ln -s -f ~/projects/setup/.ssh/config ~/.ssh/config
+    mkdir -p ~/.unison
     ln -s -f ~/projects/setup/.unison/default.prf ~/.unison/default.prf
     ln -s -f ~/projects/setup/.unison/home-to-onedrive.prf ~/.unison/home-to-onedrive.prf
     ln -s -f ~/projects/setup/.unison/home-to-google.prf ~/.unison/home-to-google.prf
@@ -412,7 +413,7 @@ function install_fisherman_plugins_and_themes() {
         blue_color
         echo "Installing Themes and Plugins..."
 
-        fisher omf/theme-bobthefish
+        fisher add oh-my-fish/theme-bobthefish
 
         green_color
         echo "Themes and Plugins installed!"
