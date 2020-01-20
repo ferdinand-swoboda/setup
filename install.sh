@@ -174,7 +174,7 @@ function clone_setup_project() {
   echo "Cloning setup project into projects directory..."
 
   mkdir -p ~/projects
-  git clone git@github.com:ferdinand-swoboda/setup.git ~/projects/setup
+  git clone https://github.com/ferdinand-swoboda/setup.git ~/projects/setup
 
   green_color
   echo "Project cloned!"
