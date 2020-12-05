@@ -15,3 +15,6 @@ Does not include
 
 Simply run
 >$ bash <(curl -s https://raw.githubusercontent.com/ferdinand-swoboda/setup/master/install.sh)
+
+# todo
+- consider replacing with https://github.com/MikeMcQuaid/strap
