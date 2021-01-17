@@ -1,7 +1,7 @@
 [user]
 	email = ferdinand.swoboda@googlemail.com
 	name = Ferdinand Swoboda
-	signingkey = AAC21F752169DD48
+	signingkey = 5D090ED40D8A5B44
 [pull]
 	rebase = true
 [push]
