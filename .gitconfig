@@ -11,17 +11,16 @@
 	# Enable colors in color-supporting terminals
 	ui = auto
 [alias]
-	glog = log --graph --decorate --all --color
+	glog = log --stat --graph --decorate --all --color
 [core]
 	# Don't consider trailing space change as a cause for merge conflicts
 	whitespace = -trailing-space
 	editor = vim
 	autocrlf = input
+	hooksPath = ~/.config/git/hooks
 [status]
 	# Display submodule rev change summaries in status
 	submoduleSummary = true
-	# Recursively traverse untracked directories to display all contents
-	showUntrackedFiles = all
 [tag]
 	# Sort tags as version numbers whenever applicable, so 1.10.2 is AFTER 1.2.0.
 	sort = version:refname
@@ -30,7 +29,6 @@
 [rebase]
 	autoSquash = true
 [merge]
-	ff = only
 	conflictstyle = diff3
 [stash]
 	showPatch = true
