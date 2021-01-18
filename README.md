@@ -18,3 +18,4 @@ Simply run
 
 # todo
 - consider replacing with https://github.com/MikeMcQuaid/strap
+- replace symlinks with simpler https://www.atlassian.com/git/tutorials/dotfiles
