@@ -15,7 +15,7 @@
 [core]
 	# Don't consider trailing space change as a cause for merge conflicts
 	whitespace = -trailing-space
-	editor = vim
+	editor = nano
 	autocrlf = input
 	hooksPath = ~/.config/git/hooks
 	pager = delta
