@@ -19,6 +19,8 @@
 	autocrlf = input
 	hooksPath = ~/.config/git/hooks
 	pager = delta
+[submodule]
+	recurse = true
 [interactive]
 	diffFilter = delta --color-only
 [delta]
